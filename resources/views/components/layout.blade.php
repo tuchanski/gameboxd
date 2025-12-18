@@ -11,8 +11,7 @@
 
     <x-navbar></x-navbar>
 
-    <main class="pt-[100px] h-400">
-        <p>Hello, World!</p>
+    <main class="pt-[100px]">
     </main>
 
 </body>

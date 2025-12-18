@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 w-full h-[100px]  py-4 bg-navbar z-50">
+<nav class="fixed top-0 left-0 w-full h-[100px]  py-4 bg-navbar z-50 shadow-md">
     <div class="flex h-full items-center justify-between">
         <div class="flex items-center ml-[48px]">
             <a href="/">
