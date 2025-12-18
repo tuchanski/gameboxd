@@ -12,21 +12,10 @@
     <x-navbar></x-navbar>
 
     <main class="pt-[100px]">
-        <div class="mt-100">
-            <x-button.small-btn>
-                Clique aqui
-            </x-button.small-btn>
-            <x-button.small-link href="/fortnite">
-                Registre
-            </x-button.small-link>
+        <div class="mt-50">
+            <x-form>
 
-            <x-button.medium-btn>
-                Login
-            </x-button.medium-btn>
-
-            <x-button.medium-link href="/teste">
-                Clica aqui dnv
-            </x-button.medium-link>
+            </x-form>
         </div>
     </main>
 
