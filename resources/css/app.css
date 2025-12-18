@@ -9,6 +9,7 @@
 
 @theme {
     --font-sans: 'Poppins', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-    --color-background: #0F0F0F;
+    --color-nicegray: #0F0F0F;
     --color-navbar: #0F172A;
+    --color-coolyellow: #F0AD11;
 }
