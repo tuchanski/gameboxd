@@ -22,8 +22,6 @@
                         />
                     </div>
 
-                    <x-form.error name="email" />
-
                     <div>
                         <x-form.label for="password">Password</x-form.label>
                         <x-form.input
@@ -35,7 +33,7 @@
                         />
                     </div>
 
-                    <x-form.error name="password" />
+                    <x-form.error name="credentials" />
 
                     <x-button.medium-btn>Login</x-button.medium-btn>
                     <a class="mt-3 text-center hover:text-coolyellow transition:colors duration-200" href="/register">Or click here to sign up</a>
