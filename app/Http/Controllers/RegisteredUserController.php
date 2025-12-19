@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisteredUserController extends Controller
 {
-    
+
     public function create() {
         return view('auth.register');
     }
@@ -17,6 +18,13 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed'
         ]);
-        dd($attributes);
+
+        User::create([
+            'name' => $attributes['name'],
+            'email' => $attributes['email'],
+            'password' => bcrypt($attributes['password'])
+        ]);
+
+        return redirect("/login");
     }
 }

@@ -9,7 +9,7 @@
             </div>
 
             <div>
-                <form method="POST" action="/register" class="flex flex-col gap-4">
+                <form method="POST" action="/login" class="flex flex-col gap-4">
                     @csrf
                     <div>
                         <x-form.label for="email">Email</x-form.label>
