@@ -20,7 +20,7 @@ class ReviewFactory extends Factory
         return [
             'body' => $this->faker->realText(),
             'rating' => $this->faker->numberBetween(0,10),
-            'user_id' => User::factory(),
+            'user_id' => 1,
             'game_id' => fake()->numberBetween(1,5000),
         ];
     }

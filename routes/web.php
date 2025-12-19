@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth']);
+//Route::get('/', function () {
+//    return view('dashboard');
+//})->middleware(['auth']);
+
+// Main
+Route::get('/', [ReviewController::class, 'index'])->name('home')->middleware('auth');
 
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
