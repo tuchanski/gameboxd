@@ -12,12 +12,35 @@
     <x-navbar></x-navbar>
 
     <main class="pt-[100px]">
-        <div class="mt-50">
+        <div class="mt-[90px]">
 
-            <x-post href="#" title="The Legend of Zelda: Breath of the Wild"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-                    image="https://placehold.co/90x90"
-                    rating="9/10"/>
+            <x-menu></x-menu>
+
+            <div class="mb-[30px]">
+                <x-post href="#" title="The Legend of Zelda: Breath of the Wild"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                        image="https://placehold.co/90x90"
+                        rating="9/10"/>
+            </div>
+            <div class="mb-[30px]">
+                <x-post href="#" title="The Legend of Zelda: Breath of the Wild"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                        image="https://placehold.co/90x90"
+                        rating="9/10"/>
+            </div>
+            <div class="mb-[30px]">
+                <x-post href="#" title="The Legend of Zelda: Breath of the Wild"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                        image="https://placehold.co/90x90"
+                        rating="9/10"/>
+            </div>
+            <div class="mb-[30px]">
+                <x-post href="#" title="The Legend of Zelda: Breath of the Wild"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+                        image="https://placehold.co/90x90"
+                        rating="9/10"/>
+            </div>
+
 
 
         </div>
