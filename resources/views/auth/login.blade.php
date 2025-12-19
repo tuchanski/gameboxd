@@ -1,4 +1,4 @@
-<x-base.base>
+<x-base.base title="Login | Gameboxd">
     <div class="min-h-screen w-full flex items-center justify-center">
 
         <div class="w-full max-w-6xl px-12 flex items-center justify-between">
