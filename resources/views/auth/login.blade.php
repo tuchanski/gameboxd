@@ -2,12 +2,7 @@
     <div class="min-h-screen w-full flex items-center justify-center">
 
         <div class="w-full max-w-6xl px-12 flex items-center justify-between">
-
-            <div >
-                <img class="w-[350px] h-auto" src="{{ asset('images/base-logo.svg') }}">
-                <p class="text-center font-light">Reviews by players. For Players.  </p>
-            </div>
-
+            <x-logo></x-logo>
             <div>
                 <form method="POST" action="/login" class="flex flex-col gap-4">
                     @csrf
