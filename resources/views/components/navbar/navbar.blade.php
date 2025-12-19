@@ -8,7 +8,11 @@
         <div class="flex items-center gap-6 text-xl mr-[48px]">
             <x-navbar.nav-link href="/">Home</x-navbar.nav-link>
             <x-navbar.nav-link href="/about">About</x-navbar.nav-link>
-            <x-navbar.nav-link href="/logout">Log Out</x-navbar.nav-link>
+            <form method="POST" action="/login">
+                @csrf
+                @method('DELETE')
+                <x-navbar.nav-button href="/logout">Log Out</x-navbar.nav-button>
+            </form>
         </div>
     </div>
 </nav>

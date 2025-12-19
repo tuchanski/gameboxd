@@ -2,7 +2,7 @@
     <main class="flex-1 flex flex-col items-center">
         <div class="mt-[90px] w-full flex flex-col items-center">
 
-            <x-menu />
+            <x-menu name="{{Auth::user()->name}}"/>
 
             <x-post
                 href="#"
