@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 // Main
 Route::get('/', [ReviewController::class, 'index'])->name('home')->middleware('auth');
 
+// Post
+Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review')->middleware('auth');
+
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);

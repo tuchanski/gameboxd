@@ -12,7 +12,11 @@
 <body class="min-h-screen flex flex-col bg-nicegray text-white">
 
     <x-navbar />
-    {{$slot}}
+    <main class="flex-1 flex flex-col items-center">
+        <div class="mt-[90px] w-full flex flex-col items-center">
+            {{$slot}}
+        </div>
+    </main>
     <x-footer />
 
 </body>

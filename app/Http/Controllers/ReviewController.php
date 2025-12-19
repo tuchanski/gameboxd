@@ -13,4 +13,13 @@ class ReviewController extends Controller
         return view('dashboard', ['reviews' => $reviews]);
     }
 
+    function show(Review $review) {
+
+        if ($review->user->id !== Auth::id()) {
+            abort(403);
+        }
+
+        return view('posts.show', ['review' => $review]);
+    }
+
 }
