@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 
 class RegisteredUserController extends Controller
@@ -25,6 +26,7 @@ class RegisteredUserController extends Controller
             'password' => bcrypt($attributes['password'])
         ]);
 
+        ToastMagic::success("Account has been created!");
         return redirect("/login");
     }
 }

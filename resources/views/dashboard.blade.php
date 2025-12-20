@@ -1,7 +1,8 @@
 <x-layout>
     <x-menu name="{{Auth::user()->name}}"/>
 
-    @foreach($reviews as $review)
+    @forelse($reviews as $review)
+
         <x-post
             href="/reviews/{{$review->id}}"
             title="Placeholder"
@@ -9,7 +10,13 @@
             image="https://placehold.co/90x90"
             rating="{{$review->rating}}"
         />
-    @endforeach
+
+    @empty
+        <div class="mt-8 text-center text-gray-400">
+            <p class="text-lg">😕 No reviews found</p>
+            <p class="text-sm">When you start reviewing, it will show up here.</p>
+        </div>
+    @endforelse
 
 </x-layout>
 
