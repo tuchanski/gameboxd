@@ -22,4 +22,15 @@ class ReviewController extends Controller
         return view('posts.show', ['review' => $review]);
     }
 
+    function destroy(Review $review) {
+
+        if ($review->user->id !== Auth::id()) {
+            abort(403);
+        }
+
+        $review->delete();
+
+        return redirect('/');
+    }
+
 }

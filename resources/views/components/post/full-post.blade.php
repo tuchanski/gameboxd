@@ -1,7 +1,7 @@
 <div class="m-0">
     <div
-        class="group bg-newgray w-[1000px] rounded-2xl
-               px-6 py-6"
+        class="group bg-newgray w-[1500px] rounded-2xl mt-13
+               px-6 py-6 mx-auto"
     >
 
         <div class="flex flex-col h-full">
@@ -18,22 +18,37 @@
                         {{ $title }}
                     </h2>
 
-                    <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                    <p class="mt-3 text-small text-gray-400 leading-relaxed">
                         {{ $description }}
                     </p>
                 </div>
-
             </div>
 
             <div class="mt-6 flex items-center justify-between">
                 <div class="text-white font-semibold">
-                    Rating: <span class="text-coolyellow">{{ $rating }}</span>
+                    Rating:
+                    <span class="text-coolyellow">{{ $rating }}</span>
                 </div>
 
                 <div class="flex gap-4">
-                    <x-button.small-link href="/" class="font-black border-red-500 hover:bg-red-500">Cancel</x-button.small-link>
-                    <x-button.small-link>Update</x-button.small-link>
-                    <x-button.small-link>Delete</x-button.small-link>
+                    <x-button.small-link
+                        href="/"
+                        class="font-black border-red-500 hover:bg-red-500"
+                    >
+                        Cancel
+                    </x-button.small-link>
+
+                    <x-button.small-link>
+                        Update
+                    </x-button.small-link>
+
+                    <form method="POST" action="{{ url()->current() }}">
+                        @csrf
+                        @method('DELETE')
+                        <x-button.small-btn>
+                            Delete
+                        </x-button.small-btn>
+                    </form>
                 </div>
             </div>
 

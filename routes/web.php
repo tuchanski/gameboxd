@@ -14,6 +14,7 @@ Route::get('/', [ReviewController::class, 'index'])->name('home')->middleware('a
 
 // Post
 Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review')->middleware('auth');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('review.destroy')->middleware('auth');
 
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
