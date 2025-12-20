@@ -17,13 +17,13 @@ Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('review.destroy')->middleware('auth');
 
 // Auth
-Route::get('/register', [RegisteredUserController::class, 'create']);
-Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register')->middleware('guest');
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store')->middleware('guest');
 
-Route::get("/login", [SessionController::class, 'create'])->name('login');
-Route::post("/login", [SessionController::class, 'store']);
-Route::delete("/login", [SessionController::class, 'destroy']);
+Route::get("/login", [SessionController::class, 'create'])->name('login')->middleware('guest');
+Route::post("/login", [SessionController::class, 'store'])->name('login.store')->middleware('guest');
+Route::delete("/login", [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get("/about", function () {
     return view('about');
-});
+})->middleware('auth')->name('about');
