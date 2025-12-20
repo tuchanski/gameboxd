@@ -27,9 +27,17 @@
                     {{ $title }}
                 </h2>
 
-                <p class="mt-[12px] text-sm text-gray-400 line-clamp-3">
+                <p
+                    class="mt-[12px] text-sm text-gray-400
+                     overflow-hidden
+                     text-ellipsis
+                     [display:-webkit-box]
+                     [-webkit-line-clamp:3]
+                     [-webkit-box-orient:vertical]"
+                >
                     {{ $description }}
                 </p>
+
             </div>
         </div>
 

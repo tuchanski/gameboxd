@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,11 +20,12 @@ class SessionController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            ToastMagic::success("Logged in successfully!");
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
-            'credentials' => 'The provided credentials do not match our records.',
+            ToastMagic::error("Invalid credentials!"),
         ])->onlyInput('email');
     }
 
@@ -31,6 +33,7 @@ class SessionController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        ToastMagic::success("Logged out successfully!");
         return redirect('/');
     }
 }
