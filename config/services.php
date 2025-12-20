@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'gamebrain' => [
+        'key' => env('GAMEBRAIN_API_KEY'),
+        'url' => env('GAMEBRAIN_API_URL'),
+    ]
+
 ];
