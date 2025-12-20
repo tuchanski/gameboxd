@@ -24,3 +24,6 @@ Route::get("/login", [SessionController::class, 'create'])->name('login');
 Route::post("/login", [SessionController::class, 'store']);
 Route::delete("/login", [SessionController::class, 'destroy']);
 
+Route::get("/about", function () {
+    return view('about');
+});
