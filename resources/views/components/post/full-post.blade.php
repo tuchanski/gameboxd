@@ -1,36 +1,41 @@
-<div class="m-0">
+<div class="m-0 px-4 mt-12">
     <div
-        class="group bg-newgray w-[1500px] rounded-2xl mt-13
-               px-6 py-6 mx-auto"
+        class="group bg-newgray w-full max-w-[1000px] h-auto rounded-2xl
+               px-4 sm:px-6 py-6 mx-auto"
     >
 
-        <div class="flex flex-col h-full">
+        <div class="flex flex-col h-full gap-6">
 
-            <div class="flex items-start gap-6">
+
+            <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
                 <img
-                    class="rounded-full w-[90px] h-[90px] object-cover flex-shrink-0"
+                    class="rounded-full w-[70px] h-[70px] sm:w-[90px] sm:h-[90px]
+                           object-cover flex-shrink-0"
                     src="{{ $image }}"
                     alt="{{ $title }}"
                 >
 
                 <div class="flex flex-col">
-                    <h2 class="text-xl font-semibold text-coolyellow">
+                    <h2 class="text-lg sm:text-xl font-semibold text-coolyellow">
                         {{ $title }}
                     </h2>
 
-                    <p class="mt-3 text-small text-gray-400 leading-relaxed">
+                    <p class="mt-2 sm:mt-3 text-sm text-gray-400 leading-relaxed">
                         {{ $description }}
                     </p>
                 </div>
             </div>
 
-            <div class="mt-6 flex items-center justify-between">
+            <div
+                class="flex flex-col sm:flex-row gap-4
+                       sm:items-center sm:justify-between"
+            >
                 <div class="text-white font-semibold">
                     Rating:
                     <span class="text-coolyellow">{{ $rating }}</span>
                 </div>
 
-                <div class="flex gap-4">
+                <div class="flex flex-wrap gap-3">
                     <x-button.small-link
                         href="/"
                         class="font-black border-red-500 hover:bg-red-500"

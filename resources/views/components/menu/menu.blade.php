@@ -6,7 +6,7 @@
     </div>
     <div class="flex mr-[50px]">
         <div class="mr-[25px]">
-            <x-button.small-link href="/search">Search</x-button.small-link>
+            <x-button.small-link href="/games">Search</x-button.small-link>
         </div>
         <div>
             <x-button.small-link href="/create">Create</x-button.small-link>
