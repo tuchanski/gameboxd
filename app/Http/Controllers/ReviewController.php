@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use Devrabiul\ToastMagic\Facades\ToastMagic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ class ReviewController extends Controller
 
         $review->delete();
 
+        ToastMagic::success("Review has been deleted successfully!");
         return redirect('/');
     }
 

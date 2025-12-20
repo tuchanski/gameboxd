@@ -8,11 +8,13 @@
     <title>{{$title}}</title>
     <link rel="shortcut icon" type="imagex/svg" href="{{asset('/images/dots-logo.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    {!! \Devrabiul\ToastMagic\Facades\ToastMagic::styles() !!}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="min-h-screen flex flex-col bg-nicegray text-white">
 {{$slot}}
+{!! \Devrabiul\ToastMagic\Facades\ToastMagic::scripts() !!}
 </body>
 
 </html>
