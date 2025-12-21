@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GamebrainApiController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SessionController;
@@ -27,3 +28,6 @@ Route::delete("/login", [SessionController::class, 'destroy'])->middleware('auth
 Route::get("/about", function () {
     return view('about');
 })->middleware('auth')->name('about');
+
+// Gamebrain API
+Route::get('/games', [GamebrainApiController::class, 'index'])->name('games')->middleware('auth');
