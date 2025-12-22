@@ -61,9 +61,9 @@
                 Cancel
             </x-button.small-link>
 
-            <x-button.medium-btn>
+            <x-button.small-btn>
                 {{ $submitText }}
-            </x-button.medium-btn>
+            </x-button.small-btn>
         </div>
 
     </div>
