@@ -53,7 +53,8 @@ class ReviewController extends Controller
             ->exists();
 
         if ($alreadyReviewed) {
-            abort(403, 'YOu already reviewed this game.');
+            ToastMagic::error("You already have a review for this game.");
+            return redirect("/");
         }
 
         Review::create([
@@ -65,6 +66,7 @@ class ReviewController extends Controller
             'body'    => $validated['body'],
         ]);
 
+        ToastMagic::success("Your review has been saved!");
         return redirect('/')
             ->with('success', 'Review published successfully!');
     }
