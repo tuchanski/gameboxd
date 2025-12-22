@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     function index() {
-        $reviews = Review::with('user')->where('user_id', Auth::id())->latest()->get();
+        $reviews = Review::with('user')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->paginate(5);
 
         return view('dashboard', ['reviews' => $reviews]);
     }
