@@ -9,14 +9,17 @@ class GamebrainApiController extends Controller
 {
 
     public function index(Request $request, GamebrainApiService $gamebrainApiService) {
-        $query = $request->query('query', '');
+        $query = $request->query('query');
 
-        if ($query == '') {
-            dd('no query');
+        if (!$query) {
+            return view('gamebrain.index', [
+                'data' => null,
+                'query' => '',
+            ]);
         }
 
         $data = $gamebrainApiService->getGames($query);
 
-        dd($data);
+        return view('gamebrain.index', compact('data', 'query'));
     }
 }
