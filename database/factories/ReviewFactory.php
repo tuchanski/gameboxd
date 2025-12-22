@@ -20,6 +20,8 @@ class ReviewFactory extends Factory
         return [
             'body' => $this->faker->realText(2000),
             'rating' => $this->faker->numberBetween(0,10),
+            'title' => $this->faker->realText(50),
+            'image' => $this->faker->imageUrl(),
             'user_id' => 1,
             'game_id' => fake()->numberBetween(1,5000),
         ];

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('body')->nullable();
             $table->unsignedTinyInteger('rating');
             $table->unsignedInteger('game_id');
+            $table->text('image')->nullable();
+            $table->text('title')->nullable();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

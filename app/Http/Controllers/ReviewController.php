@@ -11,6 +11,7 @@ class ReviewController extends Controller
 {
     function index() {
         $reviews = Review::with('user')->where('user_id', Auth::id())->latest()->get();
+
         return view('dashboard', ['reviews' => $reviews]);
     }
 
