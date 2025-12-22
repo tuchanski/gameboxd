@@ -36,12 +36,6 @@
                 </div>
 
                 <div class="flex flex-wrap gap-3">
-                    <x-button.small-link
-                        href="/"
-                        class="font-black border-red-500 hover:bg-red-500"
-                    >
-                        Cancel
-                    </x-button.small-link>
 
                     <x-button.small-link href="/reviews/{{$id}}/edit">
                         Update

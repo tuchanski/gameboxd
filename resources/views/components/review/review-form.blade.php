@@ -52,8 +52,20 @@
     </div>
 
     <div class="flex justify-end">
-        <x-button.medium-btn>
-            {{ $submitText }}
-        </x-button.medium-btn>
+
+        <div>
+            <x-button.small-link
+                href="/"
+                class="font-black border-red-500 hover:bg-red-500 mr-[10px]"
+            >
+                Cancel
+            </x-button.small-link>
+
+            <x-button.medium-btn>
+                {{ $submitText }}
+            </x-button.medium-btn>
+        </div>
+
     </div>
+
 </form>

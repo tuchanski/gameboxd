@@ -10,7 +10,10 @@
             Organize your collection, register your experiences, and build your own gaming history in one place.
         </p>
 
-        <x-button.small-link href="/" class="mt-5">Start</x-button.small-link>
+        <div class="flex gap-5">
+            <x-button.small-link href="/" class="mt-5">Dashboard 📄</x-button.small-link>
+            <x-button.small-link href="/games" class="mt-5">Create 🛠️</x-button.small-link>
+        </div>
 
     </div>
 </x-layout>

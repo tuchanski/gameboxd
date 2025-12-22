@@ -18,7 +18,10 @@
                 rating="{{$review['rating']}}"
                 submit-text="Edit review"
             />
+
         </div>
+
+
 
     </div>
 

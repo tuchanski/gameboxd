@@ -1,6 +1,6 @@
 <x-layout>
 
-    <div class="w-full max-w-3xl mx-auto mt-10 px-4">
+    <div class="w-full max-w-3xl mx-auto mt-12 px-4">
 
         <x-review.review-header
             :image="$image"
@@ -15,7 +15,7 @@
                 title="{{ $title }}"
                 image="{{ $image }}"
                 year="{{ $year }}"
-                submit-text="Publish review"
+                submit-text="Create Review"
             />
         </div>
 
