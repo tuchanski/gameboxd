@@ -10,34 +10,33 @@
     >
 
         <div class="flex items-center gap-6">
-            <img
-                class="rounded-full w-[90px] h-[90px] object-cover
-                       transition-transform duration-300
-                     "
-                src="{{ $image }}"
-                alt="{{ $title }}"
-            >
+
+            <div class="w-[90px] h-[90px] rounded-full overflow-hidden flex-shrink-0">
+                <img
+                    src="{{ $image }}"
+                    alt="{{ $title }}"
+                    class="w-full h-full object-cover"
+                >
+            </div>
 
             <div class="flex flex-col">
                 <h2
                     class="text-xl font-semibold text-coolyellow
-                           transition-colors duration-300
-                           "
+                           transition-colors duration-300"
                 >
                     {{ $title }}
                 </h2>
 
                 <p
                     class="mt-[12px] text-sm text-gray-400
-                     overflow-hidden
-                     text-ellipsis
-                     [display:-webkit-box]
-                     [-webkit-line-clamp:3]
-                     [-webkit-box-orient:vertical]"
+                           overflow-hidden
+                           text-ellipsis
+                           [display:-webkit-box]
+                           [-webkit-line-clamp:3]
+                           [-webkit-box-orient:vertical]"
                 >
                     {{ $description }}
                 </p>
-
             </div>
         </div>
 
@@ -46,7 +45,9 @@
                    transition-transform duration-300
                    group-hover:scale-105"
         >
-            Rating: <span class="text-coolyellow">{{ $rating }}</span>
+            Rating:
+            <span class="text-coolyellow">{{ $rating }}</span>
         </div>
+
     </a>
 </div>

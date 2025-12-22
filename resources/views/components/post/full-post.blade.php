@@ -44,7 +44,7 @@
                     <form method="POST" action="{{ url()->current() }}">
                         @csrf
                         @method('DELETE')
-                        <x-button.small-btn>
+                        <x-button.small-btn class="border-red-500 hover:bg-red-500">
                             Delete
                         </x-button.small-btn>
                     </form>

@@ -50,7 +50,7 @@ class ReviewController extends Controller
     function create(Request $request) {
 
         $gameId = $request->query('game_id');
-        $title = $request->query('title');
+        $title  = html_entity_decode($request->query('title'));
         $image = $request->query('image');
         $year = $request->query('year');
 
@@ -62,8 +62,6 @@ class ReviewController extends Controller
         ]);
     }
 
-
-
     public function store(Request $request) {
 
         $validated = $request->validate([
@@ -73,6 +71,8 @@ class ReviewController extends Controller
             'rating'  => ['required', 'numeric', 'min:0', 'max:10'],
             'body'    => ['required', 'string', 'min:10'],
         ]);
+
+        $validated['title'] = html_entity_decode($validated['title']);
 
         $alreadyReviewed = Review::where('game_id', $validated['game_id'])
             ->where('user_id', Auth::id())
