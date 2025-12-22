@@ -5,9 +5,9 @@
 
         <x-post
             href="/reviews/{{$review->id}}"
-            title="Placeholder"
+            title="{{$review->title}}"
             description="{{$review->body}}"
-            image="https://placehold.co/90x90"
+            image="{{$review->image}}"
             rating="{{$review->rating}}"
         />
 

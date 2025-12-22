@@ -42,13 +42,25 @@ class ReviewController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             'game_id' => ['required', 'integer'],
+            'title' => ['required', 'string', 'max:255'],
+            'image' => ['required'],
             'rating'  => ['required', 'numeric', 'min:0', 'max:10'],
             'body'    => ['required', 'string', 'min:10'],
         ]);
 
+        $alreadyReviewed = Review::where('game_id', $validated['game_id'])
+            ->where('user_id', Auth::id())
+            ->exists();
+
+        if ($alreadyReviewed) {
+            abort(403, 'YOu already reviewed this game.');
+        }
+
         Review::create([
             'game_id' => $validated['game_id'],
             'user_id' => Auth::id(),
+            'title' => $validated['title'],
+            'image' => $validated['image'],
             'rating'  => $validated['rating'],
             'body'    => $validated['body'],
         ]);
