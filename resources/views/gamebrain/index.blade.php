@@ -11,7 +11,9 @@
         @if($data && $data['total_results'] > 0)
             <div class="space-y-6">
                 @foreach($data['results'] as $game)
-                    <x-game-card.game-card :game="$game" />
+                    @if($game['image'] != null)
+                        <x-game-card.game-card :game="$game" />
+                    @endif
                 @endforeach
             </div>
         @elseif($query)

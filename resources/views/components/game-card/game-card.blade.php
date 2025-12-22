@@ -19,7 +19,7 @@
     >
 
         <img
-            src="{{ $game['image'] ?? 'https://placehold.co/90x90' }}"
+            src="{{ $game['image'] ?? null }}"
             alt="{{ $game['name'] }}"
             class="w-[90px] h-[90px] rounded-xl object-cover flex-shrink-0"
         >
