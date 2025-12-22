@@ -9,46 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    function index() {
-        $reviews = Review::with('user')
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->paginate(5);
-
-        return view('dashboard', ['reviews' => $reviews]);
-    }
-
-    function edit($id) {
-        $review = Review::with('user')->where('id', $id)->first();
-        return view('posts.edit', ['review' => $review]);
-    }
-
-    public function update(Request $request, Review $review)
-    {
-        if ($review->user_id !== Auth::id()) {
-            abort(403);
-        }
-
-        $validated = $request->validate([
-            'rating' => ['required', 'numeric', 'min:0', 'max:10'],
-            'body'   => ['required', 'string', 'min:10'],
-        ]);
-
-        $review->update($validated);
-
-        ToastMagic::success("Review updated successfully!");
-        return redirect('/');
-    }
-
-
-    function show(Review $review) {
-
-        if ($review->user->id !== Auth::id()) {
-            abort(403);
-        }
-
-        return view('posts.show', ['review' => $review]);
-    }
+    // CREATE
 
     function create(Request $request) {
 
@@ -100,6 +61,57 @@ class ReviewController extends Controller
             ->with('success', 'Review published successfully!');
     }
 
+    // READ
+
+    function index() {
+        $reviews = Review::with('user')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->paginate(5);
+
+        return view('dashboard', ['reviews' => $reviews]);
+    }
+
+    function show(Review $review) {
+
+        if ($review->user->id !== Auth::id()) {
+            abort(403);
+        }
+
+        return view('posts.show', ['review' => $review]);
+    }
+
+    // UPDATE
+
+    function edit($id) {
+        $review = Review::with('user')->where('id', $id)->first();
+
+        if ($review->user()->isNot(Auth::user())) {
+            abort(403);
+        }
+
+        return view('posts.edit', ['review' => $review]);
+    }
+
+    public function update(Request $request, Review $review)
+    {
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'rating' => ['required', 'numeric', 'min:0', 'max:10'],
+            'body'   => ['required', 'string', 'min:10'],
+        ]);
+
+        $review->update($validated);
+
+        ToastMagic::success("Review updated successfully!");
+        return redirect('/');
+    }
+
+    // DELETE
+
     function destroy(Review $review) {
 
         if ($review->user->id !== Auth::id()) {
@@ -111,5 +123,4 @@ class ReviewController extends Controller
         ToastMagic::success("Review has been deleted successfully!");
         return redirect('/');
     }
-
 }
