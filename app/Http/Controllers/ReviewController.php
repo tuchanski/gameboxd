@@ -15,6 +15,29 @@ class ReviewController extends Controller
         return view('dashboard', ['reviews' => $reviews]);
     }
 
+    function edit($id) {
+        $review = Review::with('user')->where('id', $id)->first();
+        return view('posts.edit', ['review' => $review]);
+    }
+
+    public function update(Request $request, Review $review)
+    {
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'rating' => ['required', 'numeric', 'min:0', 'max:10'],
+            'body'   => ['required', 'string', 'min:10'],
+        ]);
+
+        $review->update($validated);
+
+        ToastMagic::success("Review updated successfully!");
+        return redirect('/');
+    }
+
+
     function show(Review $review) {
 
         if ($review->user->id !== Auth::id()) {
@@ -39,7 +62,10 @@ class ReviewController extends Controller
         ]);
     }
 
+
+
     public function store(Request $request) {
+
         $validated = $request->validate([
             'game_id' => ['required', 'integer'],
             'title' => ['required', 'string', 'max:255'],

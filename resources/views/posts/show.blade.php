@@ -6,6 +6,7 @@
             description="{{$review->body}}"
             image="{{$review->image}}"
             rating="{{$review->rating}}"
+            id="{{$review->id}}"
         />
     </div>
 </x-layout>

@@ -7,6 +7,8 @@
     'image' => null,
     'year' => null,
     'submitText' => 'Publish review',
+    'body' => null,
+    'rating' => null
 ])
 
 <form method="POST" action="{{ $action }}" class="flex flex-col gap-6">
@@ -14,6 +16,7 @@
     @if($method !== 'POST')
         @method($method)
     @endif
+
 
     @if($gameId)
         <input type="hidden" name="game_id" value="{{ $gameId }}">
@@ -31,7 +34,7 @@
             max="10"
             step="0.5"
             placeholder="0 – 10"
-            value="{{ old('rating', $review?->rating) }}"
+            value="{{ old('rating', $review?->rating ?? $rating) }}"
             required
         />
     </div>
@@ -42,10 +45,10 @@
             name="body"
             rows="6"
             class="w-full rounded-xl bg-nicegray border border-nicegray
-                   text-white px-4 py-3 focus:outline-none
-                   focus:ring-2 focus:ring-coolyellow/60"
+           text-white px-4 py-3 focus:outline-none
+           focus:ring-2 focus:ring-coolyellow/60"
             required
-        >{{ old('body', $review?->body) }}</textarea>
+        >{{ old('body', $review?->body ?? $body) }}</textarea>
     </div>
 
     <div class="flex justify-end">

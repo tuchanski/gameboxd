@@ -1,7 +1,7 @@
 @props([
     'image',
     'title',
-    'year'
+    'year' => null
 ])
 
 <div class="flex items-center gap-6 mb-8">
@@ -18,7 +18,9 @@
         </h1>
 
         <p class="text-gray-400 mt-1">
-            Released in {{ $year }}
+            @if($year != null)
+                Released in {{ $year }}
+            @endif
         </p>
     </div>
 </div>

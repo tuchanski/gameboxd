@@ -43,7 +43,7 @@
                         Cancel
                     </x-button.small-link>
 
-                    <x-button.small-link>
+                    <x-button.small-link href="/reviews/{{$id}}/edit">
                         Update
                     </x-button.small-link>
 
@@ -54,6 +54,7 @@
                             Delete
                         </x-button.small-btn>
                     </form>
+
                 </div>
             </div>
 
