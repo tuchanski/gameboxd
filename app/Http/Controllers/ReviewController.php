@@ -23,8 +23,37 @@ class ReviewController extends Controller
         return view('posts.show', ['review' => $review]);
     }
 
-    function create() {
-        return view('posts.create');
+    function create(Request $request) {
+
+        $gameId = $request->query('game_id');
+        $title = $request->query('title');
+        $image = $request->query('image');
+        $year = $request->query('year');
+
+        return view('posts.create', [
+            'gameId' => $gameId,
+            'title' => $title,
+            'image' => $image,
+            'year' => $year
+        ]);
+    }
+
+    public function store(Request $request) {
+        $validated = $request->validate([
+            'game_id' => ['required', 'integer'],
+            'rating'  => ['required', 'numeric', 'min:0', 'max:10'],
+            'body'    => ['required', 'string', 'min:10'],
+        ]);
+
+        Review::create([
+            'game_id' => $validated['game_id'],
+            'user_id' => Auth::id(),
+            'rating'  => $validated['rating'],
+            'body'    => $validated['body'],
+        ]);
+
+        return redirect('/')
+            ->with('success', 'Review published successfully!');
     }
 
     function destroy(Review $review) {

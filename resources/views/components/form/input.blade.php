@@ -6,6 +6,7 @@
                     transition-all duration-300 ease-out
                     hover:border-coolyellow
                     focus:border-coolyellow
-                    focus:outline-none'
+                    focus:outline-none
+                    [appearance:textfield]'
     ]) }}
 />
