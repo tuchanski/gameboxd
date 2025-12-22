@@ -23,6 +23,10 @@ class ReviewController extends Controller
         return view('posts.show', ['review' => $review]);
     }
 
+    function create() {
+        return view('posts.create');
+    }
+
     function destroy(Review $review) {
 
         if ($review->user->id !== Auth::id()) {
