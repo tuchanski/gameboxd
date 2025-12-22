@@ -7,8 +7,8 @@
         </div>
         <div class="flex items-center gap-6 text-xl mr-[48px]">
             <x-navbar.nav-link href="/">Dashboard</x-navbar.nav-link>
-            <x-navbar.nav-link href="/about">About</x-navbar.nav-link>
             <x-navbar.nav-link href="/games">Create</x-navbar.nav-link>
+            <x-navbar.nav-link href="/about">About</x-navbar.nav-link>
             <form method="POST" action="/login">
                 @csrf
                 @method('DELETE')
