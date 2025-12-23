@@ -1,59 +1,372 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gameboxd
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A lightweight Laravel 12 application to track and review video games. Search games via the Gamebrain API, write personal reviews with ratings, and manage your entries behind authentication. Built with Vite and Tailwind for a snappy UI, and ready to run locally or via Docker/Sail.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   Auth: Email/password registration, login, logout
+-   Reviews: Create, read, update, delete your own reviews
+-   Ratings: 0–10 rating scale with validation
+-   Game search: Integrates with Gamebrain API for game discovery
+-   UX: Toast notifications via `devrabiul/laravel-toaster-magic`
+-   DX: Vite dev server, Pest tests, optional Sail + MySQL + phpMyAdmin
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Backend: Laravel 12 (PHP ^8.2)
+-   Frontend: Vite ^7, Tailwind CSS ^4
+-   Notifications: `devrabiul/laravel-toaster-magic`
+-   Tests: Pest ^4
+-   Local Dev: Laravel Sail (Docker) or native PHP toolchain
 
-## Learning Laravel
+## Quick Start
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Option A — Docker (Sail)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Create environment
 
-## Laravel Sponsors
+```bash
+cp .env.example .env
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. Configure required variables in `.env` (see Environment below).
+3. Start services
 
-### Premium Partners
+```bash
+# If Sail is available (recommended)
+./vendor/bin/sail up -d
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Or with Docker Compose directly
+docker compose up -d
+```
 
-## Contributing
+4. Install dependencies and build assets
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
+./vendor/bin/sail php artisan key:generate
+./vendor/bin/sail php artisan migrate --seed
+./vendor/bin/sail npm run dev   # for hot-reload
+```
 
-## Code of Conduct
+5. Open the app
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   App: http://localhost (or the value of `APP_PORT`, default 80)
+-   Vite: http://localhost:5173 (proxied when using Vite dev)
+-   phpMyAdmin: http://localhost:8080
 
-## Security Vulnerabilities
+### Option B — Native (no Docker)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Prerequisites: PHP ^8.2, Composer, Node.js 18+, MySQL 8.4
+
+```bash
+cp .env.example .env
+composer install
+npm install
+php artisan key:generate
+php artisan migrate --seed
+npm run dev     # or: npm run build
+php artisan serve
+```
+
+Open http://127.0.0.1:8000
+
+## Environment
+
+Set these keys in `.env` before running:
+
+-   APP_NAME, APP_URL, APP_KEY (generated)
+-   DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD
+-   GAMEBRAIN_API_KEY, GAMEBRAIN_API_URL (required for search)
+
+The Gamebrain service uses bearer auth and expects a base URL:
+
+-   Config location: [config/services.php](config/services.php)
+-   Service code: [app/Services/GamebrainApiService.php](app/Services/GamebrainApiService.php)
+
+## Useful Commands
+
+-   Start dev suite (concurrently runs server, queue, logs, vite):
+
+```bash
+composer run dev
+```
+
+-   Run tests:
+
+```bash
+php artisan test
+# or
+./vendor/bin/pest
+```
+
+-   Run migrations/seeders:
+
+```bash
+php artisan migrate --seed
+```
+
+-   Build assets for production:
+
+```bash
+npm run build
+```
+
+## Routes Overview
+
+-   `GET /` — Dashboard of your reviews (auth)
+-   `GET /games?query=...` — Gamebrain search (auth)
+-   `GET /reviews/create` — New review form (auth; supports game query params)
+-   `POST /reviews` — Create review (auth)
+-   `GET /reviews/{id}` — View review (auth, owner-only)
+-   `GET /reviews/{id}/edit` — Edit review (auth, owner-only)
+-   `PATCH /reviews/{id}` — Update review (auth, owner-only)
+-   `DELETE /reviews/{id}` — Delete review (auth, owner-only)
+-   `GET /register` / `POST /register` — Sign up (guest)
+-   `GET /login` / `POST /login` / `DELETE /login` — Auth (guest/auth)
+-   `GET /about` — About page (auth)
+
+## Data Model
+
+`reviews` table (selected columns):
+
+-   `id` (PK)
+-   `user_id` (FK -> users, cascade on delete)
+-   `game_id` (int)
+-   `title` (text, nullable)
+-   `image` (text, nullable)
+-   `rating` (tinyint 0–10)
+-   `body` (text, nullable)
+-   Timestamps
+
+See migration: [database/migrations/2025_12_18_164916_create_reviews_table.php](database/migrations/2025_12_18_164916_create_reviews_table.php)
+
+## Running With Docker Details
+
+This repo ships a `compose.yaml` tailored for Sail:
+
+-   App: publishes `${APP_PORT:-80}`; Vite: `${VITE_PORT:-5173}`
+-   MySQL 8.4, volume `sail-mysql`
+-   phpMyAdmin on `8080`
+
+Common Sail commands:
+
+```bash
+./vendor/bin/sail up -d
+./vendor/bin/sail down
+./vendor/bin/sail artisan migrate --seed
+./vendor/bin/sail npm run dev
+```
+
+## Development Notes
+
+-   Views live in [resources/views](resources/views)
+-   Frontend entrypoints: [resources/js/app.js](resources/js/app.js), [resources/css/app.css](resources/css/app.css)
+-   Vite config: [vite.config.js](vite.config.js)
+-   Example dashboard: [resources/views/dashboard.blade.php](resources/views/dashboard.blade.php)
+
+## Troubleshooting
+
+-   403/redirect on `/`: You must be logged in; register first.
+-   Game search returns empty: verify `GAMEBRAIN_API_KEY` and `GAMEBRAIN_API_URL`.
+-   Vite HMR not working in Docker: ensure `VITE_PORT` is open and matches `5173`.
+-   MySQL connection errors: confirm DB host/port and that the container is healthy.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT (see root license of Laravel skeleton). Project content is for educational/demo purposes.
+
+# Gameboxd
+
+A Laravel-based social platform for video game enthusiasts to review, rate, and discover games. Inspired by Letterboxd, Gameboxd allows users to share their gaming experiences and build a personal library of game reviews.
+
+## Features
+
+-   **User Authentication**: Register, login, and manage user accounts
+-   **Game Reviews**: Create, edit, and delete game reviews with ratings
+-   **Game Search**: Integration with Gamebrain API for comprehensive game data
+-   **Social Dashboard**: View and interact with reviews from the community
+-   **Rating System**: Rate games and see aggregated community ratings
+-   **User Profiles**: Personal review collections and gaming history
+
+## Tech Stack
+
+-   **Backend**: Laravel 12 (PHP 8.2+)
+-   **Frontend**: Blade Templates, Tailwind CSS 4, Vite 7
+-   **Database**: MySQL
+-   **Testing**: Pest PHP
+-   **Development**: Laravel Sail (Docker)
+-   **Code Quality**: Laravel Pint
+
+## Prerequisites
+
+-   PHP 8.2 or higher
+-   Composer
+-   Node.js & npm
+-   Docker & Docker Compose (for Sail)
+-   Gamebrain API Key
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd gameboxd
+```
+
+### 2. Install PHP dependencies
+
+```bash
+composer install
+```
+
+### 3. Install Node dependencies
+
+```bash
+npm install
+```
+
+### 4. Environment setup
+
+Copy the example environment file and configure it:
+
+```bash
+cp .env.example .env
+```
+
+Update the following environment variables:
+
+```env
+APP_NAME=Gameboxd
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=gameboxd
+DB_USERNAME=sail
+DB_PASSWORD=password
+
+GAMEBRAIN_API_KEY=your_api_key_here
+GAMEBRAIN_API_URL=https://api.gamebrain.example
+```
+
+### 5. Generate application key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Start development environment
+
+Using Laravel Sail:
+
+```bash
+./vendor/bin/sail up -d
+```
+
+Or if you have Sail aliased:
+
+```bash
+sail up -d
+```
+
+### 7. Run migrations
+
+```bash
+sail artisan migrate
+```
+
+### 8. Build frontend assets
+
+```bash
+npm run dev
+```
+
+For production:
+
+```bash
+npm run build
+```
+
+## Development
+
+### Running the application
+
+-   **Application**: http://localhost (or configured APP_PORT)
+-   **Vite Dev Server**: http://localhost:5173
+-   **phpMyAdmin**: http://localhost:8080
+
+### Database Management
+
+Access phpMyAdmin at http://localhost:8080 to manage your database visually.
+
+### Running tests
+
+```bash
+sail artisan test
+```
+
+Or using Pest directly:
+
+```bash
+sail pest
+```
+
+### Code Formatting
+
+Format code using Laravel Pint:
+
+```bash
+sail pint
+```
+
+## Project Structure
+
+```
+app/
+├── Http/Controllers/     # Application controllers
+│   ├── ReviewController.php
+│   ├── RegisteredUserController.php
+│   └── SessionController.php
+├── Models/              # Eloquent models
+│   ├── Review.php
+│   └── User.php
+└── Services/            # Business logic services
+    └── GamebrainApiService.php
+
+database/
+├── factories/           # Model factories for testing
+├── migrations/          # Database migrations
+└── seeders/            # Database seeders
+
+resources/
+├── css/                # Stylesheets
+├── js/                 # JavaScript files
+└── views/              # Blade templates
+    ├── dashboard.blade.php
+    ├── about.blade.php
+    └── gamebrain/      # Game-related views
+
+routes/
+└── web.php             # Web routes
+```
+
+## API Integration
+
+The application integrates with the Gamebrain API for game data. Ensure you have a valid API key configured in your `.env` file:
+
+```env
+GAMEBRAIN_API_KEY=your_api_key
+GAMEBRAIN_API_URL=api_base_url
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
