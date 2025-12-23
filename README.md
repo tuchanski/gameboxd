@@ -19,6 +19,32 @@ A lightweight Laravel 12 application to track and review video games. Search gam
 -   Tests: Pest ^4
 -   Local Dev: Laravel Sail (Docker) or native PHP toolchain
 
+## Screenshots
+
+### 1. Login
+<img width="1917" height="1028" alt="Image" src="https://github.com/user-attachments/assets/5ce40f36-ac35-4055-b5db-8d387dcee2a6" />
+
+### 2. Register
+<img width="1915" height="1025" alt="Image" src="https://github.com/user-attachments/assets/9d5112b5-cc01-42c5-b870-a921cfa76bbf" />
+
+### 3. Dashboard
+<img width="1917" height="1032" alt="Image" src="https://github.com/user-attachments/assets/f18717f4-260e-4bb6-9ea1-a85a434b5dd4" />
+
+### 4. About
+<img width="1916" height="1023" alt="Image" src="https://github.com/user-attachments/assets/e5173e57-4255-4fab-8baf-184e42536a5c" />
+
+### 5. Review
+<img width="1917" height="1022" alt="Image" src="https://github.com/user-attachments/assets/5a71e59f-01f2-4bae-bcb8-bbd8d2be0f53" />
+
+### 6. Edit Review
+<img width="1916" height="1027" alt="Image" src="https://github.com/user-attachments/assets/3b689255-2a73-4d33-9785-d7198d6cf77d" />
+
+### 7. Game Searcher
+<img width="1917" height="1032" alt="Image" src="https://github.com/user-attachments/assets/7d81da5a-8711-41da-bf77-adaefcc8e12a" />
+
+### 8. Create Review
+<img width="1918" height="1026" alt="Image" src="https://github.com/user-attachments/assets/03262bdb-8065-462a-a384-b6a2ae9296e0" />
+
 ## Quick Start
 
 ### Option A — Docker (Sail)
